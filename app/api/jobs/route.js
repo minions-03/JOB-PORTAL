@@ -13,17 +13,20 @@ export async function GET(req) {
         await dbConnect();
         const { searchParams } = new URL(req.url);
         const q = searchParams.get("q");
+        const location = searchParams.get("location");
 
         let query = {};
+
         if (q) {
-            query = {
-                $or: [
-                    { title: { $regex: q, $options: "i" } },
-                    { companyName: { $regex: q, $options: "i" } },
-                    { description: { $regex: q, $options: "i" } },
-                    { location: { $regex: q, $options: "i" } },
-                ],
-            };
+            query.$or = [
+                { title: { $regex: q, $options: "i" } },
+                { companyName: { $regex: q, $options: "i" } },
+                { description: { $regex: q, $options: "i" } },
+            ];
+        }
+
+        if (location) {
+            query.location = { $regex: location, $options: "i" };
         }
 
         const jobs = await Job.find(query).sort({ createdAt: -1 });

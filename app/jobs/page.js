@@ -19,7 +19,7 @@ function JobsPageContent() {
     const fetchJobs = async () => {
         setLoading(true);
         try {
-            const res = await fetch(`/api/jobs?q=${searchTerm}`);
+            const res = await fetch(`/api/jobs?q=${searchTerm}&location=${locationTerm}`);
             const data = await res.json();
             if (data.success) {
                 setJobs(data.data);
