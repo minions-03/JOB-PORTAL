@@ -1,10 +1,30 @@
+"use client";
+
 import Link from "next/link";
 import { Search, MapPin } from "lucide-react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [locationTerm, setLocationTerm] = useState("");
+
+  const handleSearch = () => {
+    const params = new URLSearchParams();
+    if (searchTerm) params.append("q", searchTerm);
+    if (locationTerm) params.append("location", locationTerm);
+    router.push(`/jobs?${params.toString()}`);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-50 to-white pt-24 pb-32 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,6 +48,9 @@ export default function Home() {
                     type="text"
                     placeholder="Job title, keywords..."
                     className="block w-full pl-10 pr-3 py-3 border border-gray-100 rounded-lg focus:ring-2 focus:ring-blue-500 text-black placeholder-gray-500 focus:outline-none"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onKeyDown={handleKeyDown}
                   />
                 </div>
                 <div className="relative flex-grow sm:border-l border-gray-200">
@@ -38,9 +61,15 @@ export default function Home() {
                     type="text"
                     placeholder="Location"
                     className="block w-full pl-10 pr-3 py-3 border border-gray-100 rounded-lg focus:ring-2 focus:ring-blue-500 text-black placeholder-gray-500 focus:outline-none"
+                    value={locationTerm}
+                    onChange={(e) => setLocationTerm(e.target.value)}
+                    onKeyDown={handleKeyDown}
                   />
                 </div>
-                <button className="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-500/30">
+                <button
+                  onClick={handleSearch}
+                  className="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-500/30"
+                >
                   Search
                 </button>
               </div>
