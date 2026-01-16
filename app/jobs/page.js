@@ -16,24 +16,61 @@ function JobsPageContent() {
     const [searchTerm, setSearchTerm] = useState(initialQuery);
     const [locationTerm, setLocationTerm] = useState("");
 
+    // Filters State
+    const [selectedTypes, setSelectedTypes] = useState([]);
+    const [selectedSalary, setSelectedSalary] = useState("Any");
+
     const fetchJobs = async () => {
         setLoading(true);
         try {
-            const res = await fetch(`/api/jobs?q=${searchTerm}&location=${locationTerm}`);
+            const params = new URLSearchParams();
+            if (searchTerm) params.append("q", searchTerm);
+            if (locationTerm) params.append("location", locationTerm);
+            if (selectedTypes.length > 0) params.append("type", selectedTypes.join(","));
+
+            if (selectedSalary !== "Any") {
+                // Parse salary range from dropdown string like "$30k - $50k" or "$120k+"
+                const clean = selectedSalary.toLowerCase().replace(/[$,\s]/g, "");
+                if (clean.includes("-")) {
+                    const [min, max] = clean.split("-").map(s => parseFloat(s.replace("k", "")) * 1000);
+                    params.append("minSalary", min);
+                    params.append("maxSalary", max);
+                } else if (clean.includes("+")) {
+                    const min = parseFloat(clean.replace("k", "").replace("+", "")) * 1000;
+                    params.append("minSalary", min);
+                }
+            }
+
+            const res = await fetch(`/api/jobs?${params.toString()}`);
             const data = await res.json();
             if (data.success) {
                 setJobs(data.data);
+            } else {
+                setJobs([]); // Clear on error or handle gracefully
             }
         } catch (error) {
             console.error("Failed to fetch jobs", error);
+            setJobs([]);
         } finally {
             setLoading(false);
         }
     };
 
+    // Trigger fetch when strict filters change (Type/Salary)
+    // For text inputs (Search/Location), we keep the form submit behavior to avoid too many requests while typing,
+    // OR matching the user expectation. The previous code only searched on submit.
+    // Let's reload when filters change.
     useEffect(() => {
         fetchJobs();
-    }, []);
+    }, [selectedTypes, selectedSalary]); // Reload on filter change
+
+    const handleTypeChange = (type) => {
+        if (selectedTypes.includes(type)) {
+            setSelectedTypes(selectedTypes.filter(t => t !== type));
+        } else {
+            setSelectedTypes([...selectedTypes, type]);
+        }
+    };
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -77,7 +114,7 @@ function JobsPageContent() {
 
                 {/* Results */}
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                    {/* Sidebar Filters (Mock) */}
+                    {/* Sidebar Filters */}
                     <div className="hidden lg:block space-y-6">
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                             <div className="flex items-center gap-2 mb-4 font-bold text-gray-900">
@@ -91,7 +128,12 @@ function JobsPageContent() {
                                     <div className="space-y-2">
                                         {["Full-time", "Part-time", "Contract", "Internship"].map((type) => (
                                             <label key={type} className="flex items-center gap-2 cursor-pointer">
-                                                <input type="checkbox" className="rounded text-blue-600 focus:ring-blue-500" />
+                                                <input
+                                                    type="checkbox"
+                                                    className="rounded text-blue-600 focus:ring-blue-500"
+                                                    checked={selectedTypes.includes(type)}
+                                                    onChange={() => handleTypeChange(type)}
+                                                />
                                                 <span className="text-sm text-gray-600">{type}</span>
                                             </label>
                                         ))}
@@ -102,7 +144,11 @@ function JobsPageContent() {
 
                                 <div>
                                     <h4 className="font-medium text-sm text-gray-700 mb-2">Salary Range</h4>
-                                    <select className="w-full border-gray-200 rounded-md text-sm text-gray-600">
+                                    <select
+                                        className="w-full border-gray-200 rounded-md text-sm text-gray-600 focus:ring-blue-500 focus:border-blue-500 p-2"
+                                        value={selectedSalary}
+                                        onChange={(e) => setSelectedSalary(e.target.value)}
+                                    >
                                         <option>Any</option>
                                         <option>$30k - $50k</option>
                                         <option>$50k - $80k</option>

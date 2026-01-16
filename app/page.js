@@ -5,51 +5,64 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-blue-600 text-white pt-24 pb-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-700 to-blue-500 opacity-90"></div>
-        {/* Decorative circles */}
-        <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-blue-400 opacity-20 blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-96 h-96 rounded-full bg-indigo-500 opacity-30 blur-3xl"></div>
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-blue-50 to-white pt-24 pb-32 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            {/* Left Content */}
+            <div className="flex-1 text-center lg:text-left z-10">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-6 leading-tight">
+                Find Your <br />
+                <span className="text-blue-600">Dream Job</span> Today
+              </h1>
+              <p className="text-lg sm:text-xl text-gray-600 mb-10 max-w-2xl mx-auto lg:mx-0">
+                Connecting thousands of job seekers with top employers. Browse jobs, apply effortlessly, and track your career progress.
+              </p>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
-            Find Your <span className="text-yellow-300">Dream Job</span> Today
-          </h1>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-10">
-            Connecting thousands of job seekers with top employers. Browse jobs, apply effortlessly, and track your career progress.
-          </p>
-
-          <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-2xl p-2 flex flex-col sm:flex-row gap-2">
-            <div className="relative flex-grow">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Search className="h-5 w-5 text-gray-400" />
+              <div className="bg-white rounded-xl shadow-xl p-3 flex flex-col sm:flex-row gap-3 border border-gray-100 max-w-2xl mx-auto lg:mx-0">
+                <div className="relative flex-grow">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Search className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Job title, keywords..."
+                    className="block w-full pl-10 pr-3 py-3 border border-gray-100 rounded-lg focus:ring-2 focus:ring-blue-500 text-black placeholder-gray-500 focus:outline-none"
+                  />
+                </div>
+                <div className="relative flex-grow sm:border-l border-gray-200">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <MapPin className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Location"
+                    className="block w-full pl-10 pr-3 py-3 border border-gray-100 rounded-lg focus:ring-2 focus:ring-blue-500 text-black placeholder-gray-500 focus:outline-none"
+                  />
+                </div>
+                <button className="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-500/30">
+                  Search
+                </button>
               </div>
-              <input
-                type="text"
-                placeholder="Job title, keywords..."
-                className="block w-full pl-10 pr-3 py-3 border-none rounded-md focus:ring-2 focus:ring-blue-500 text-black placeholder-gray-700"
+
+              <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-4 text-sm font-medium text-gray-500">
+                <span>Popular:</span>
+                <Link href="/jobs?q=Remote" className="text-blue-600 hover:text-blue-800 hover:underline">Remote</Link>
+                <Link href="/jobs?q=Developer" className="text-blue-600 hover:text-blue-800 hover:underline">Developer</Link>
+                <Link href="/jobs?q=Design" className="text-blue-600 hover:text-blue-800 hover:underline">Design</Link>
+              </div>
+            </div>
+
+            {/* Right Image */}
+            <div className="flex-1 w-full max-w-lg lg:max-w-none relative">
+              <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-64 h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+              <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-64 h-64 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+              <img
+                src="/hero-job-search.png"
+                alt="Job Search Illustration"
+                className="relative z-10 w-full h-auto drop-shadow-2xl hover:scale-[1.02] transition-transform duration-500"
               />
             </div>
-            <div className="relative flex-grow border-l border-gray-200">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <MapPin className="h-5 w-5 text-gray-400" />
-              </div>
-              <input
-                type="text"
-                placeholder="Location"
-                className="block w-full pl-10 pr-3 py-3 border-none rounded-md focus:ring-2 focus:ring-blue-500 text-black placeholder-gray-700"
-              />
-            </div>
-            <button className="bg-blue-600 text-white font-bold py-3 px-8 rounded-md hover:bg-blue-700 transition-colors shadow-lg">
-              Search
-            </button>
-          </div>
-
-          <div className="mt-8 flex justify-center gap-4 text-sm font-medium text-blue-200">
-            <span>Popular:</span>
-            <Link href="/jobs?q=Remote" className="hover:text-white underline decoration-blue-400 underline-offset-4">Remote</Link>
-            <Link href="/jobs?q=Developer" className="hover:text-white underline decoration-blue-400 underline-offset-4">Developer</Link>
-            <Link href="/jobs?q=Design" className="hover:text-white underline decoration-blue-400 underline-offset-4">Design</Link>
           </div>
         </div>
       </section>
