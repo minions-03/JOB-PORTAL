@@ -78,27 +78,27 @@ function JobsPageContent() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 py-8">
+        <div className="min-h-screen bg-gray-50 dark:bg-black py-8 transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Search Header */}
-                <div className="bg-white rounded-xl shadow-sm p-6 mb-8">
+                <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm p-6 mb-8 transition-colors duration-300">
                     <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4">
                         <div className="flex-grow relative">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500" />
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-500 dark:text-gray-400" />
                             <input
                                 type="text"
                                 placeholder="Search jobs by title, company, or keywords..."
-                                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-black placeholder-gray-700"
+                                className="w-full pl-10 pr-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-black dark:text-white placeholder-gray-700 dark:placeholder-gray-400"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
                         <div className="flex-grow relative md:max-w-xs">
-                            <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                            <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 dark:text-gray-500" />
                             <input
                                 type="text"
                                 placeholder="Location"
-                                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-black placeholder-gray-700"
+                                className="w-full pl-10 pr-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-black dark:text-white placeholder-gray-700 dark:placeholder-gray-400"
                                 value={locationTerm}
                                 onChange={(e) => setLocationTerm(e.target.value)}
                             />
@@ -116,36 +116,36 @@ function JobsPageContent() {
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                     {/* Sidebar Filters */}
                     <div className="hidden lg:block space-y-6">
-                        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                            <div className="flex items-center gap-2 mb-4 font-bold text-gray-900">
+                        <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 transition-colors duration-300">
+                            <div className="flex items-center gap-2 mb-4 font-bold text-gray-900 dark:text-white">
                                 <Filter className="h-4 w-4" />
                                 <span>Filters</span>
                             </div>
 
                             <div className="space-y-4">
                                 <div>
-                                    <h4 className="font-medium text-sm text-gray-700 mb-2">Job Type</h4>
+                                    <h4 className="font-medium text-sm text-gray-700 dark:text-gray-300 mb-2">Job Type</h4>
                                     <div className="space-y-2">
                                         {["Full-time", "Part-time", "Contract", "Internship"].map((type) => (
                                             <label key={type} className="flex items-center gap-2 cursor-pointer">
                                                 <input
                                                     type="checkbox"
-                                                    className="rounded text-blue-600 focus:ring-blue-500"
+                                                    className="rounded text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600"
                                                     checked={selectedTypes.includes(type)}
                                                     onChange={() => handleTypeChange(type)}
                                                 />
-                                                <span className="text-sm text-gray-600">{type}</span>
+                                                <span className="text-sm text-gray-600 dark:text-gray-400">{type}</span>
                                             </label>
                                         ))}
                                     </div>
                                 </div>
 
-                                <hr className="border-gray-100" />
+                                <hr className="border-gray-100 dark:border-gray-800" />
 
                                 <div>
-                                    <h4 className="font-medium text-sm text-gray-700 mb-2">Salary Range</h4>
+                                    <h4 className="font-medium text-sm text-gray-700 dark:text-gray-300 mb-2">Salary Range</h4>
                                     <select
-                                        className="w-full border-gray-200 rounded-md text-sm text-gray-600 focus:ring-blue-500 focus:border-blue-500 p-2"
+                                        className="w-full border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-md text-sm text-gray-600 dark:text-gray-300 focus:ring-blue-500 focus:border-blue-500 p-2"
                                         value={selectedSalary}
                                         onChange={(e) => setSelectedSalary(e.target.value)}
                                     >
@@ -163,11 +163,11 @@ function JobsPageContent() {
                     {/* Job List */}
                     <div className="lg:col-span-3">
                         <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-xl font-bold text-gray-800">
+                            <h2 className="text-xl font-bold text-gray-800 dark:text-white">
                                 {loading ? "Searching..." : `${jobs.length} Jobs Found`}
                             </h2>
-                            <div className="text-sm text-gray-500">
-                                Sort by: <span className="font-medium text-gray-900 cursor-pointer">Newest</span>
+                            <div className="text-sm text-gray-500 dark:text-gray-400">
+                                Sort by: <span className="font-medium text-gray-900 dark:text-white cursor-pointer">Newest</span>
                             </div>
                         </div>
 

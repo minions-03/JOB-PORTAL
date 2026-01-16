@@ -8,15 +8,14 @@ import { Menu, X, Briefcase, User } from "lucide-react";
 export default function Navbar() {
     const { data: session } = useSession();
     const [isOpen, setIsOpen] = useState(false);
-
     return (
-        <nav className="bg-white shadow-md sticky top-0 z-50">
+        <nav className="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50 border-b border-transparent dark:border-gray-800 transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
-                    <div className="flex items-center">
+                    <div className="flex items-center gap-6">
                         <Link href="/" className="flex-shrink-0 flex items-center gap-2">
                             <Briefcase className="h-8 w-8 text-blue-600" />
-                            <span className="font-bold text-2xl text-gray-900 tracking-tight">
+                            <span className="font-bold text-2xl text-gray-900 dark:text-white tracking-tight">
                                 JobPortal
                             </span>
                         </Link>

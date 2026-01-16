@@ -36,35 +36,34 @@ export default function CandidateDashboard() {
 
     const getStatusColor = (status) => {
         switch (status) {
-            case "ACCEPTED": return "text-green-600 bg-green-50 border-green-200";
-            case "REJECTED": return "text-red-600 bg-red-50 border-red-200";
-            case "SHORTLISTED": return "text-purple-600 bg-purple-50 border-purple-200";
-            default: return "text-yellow-600 bg-yellow-50 border-yellow-200"; // PENDING
+            case "ACCEPTED": return "text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800";
+            case "REJECTED": return "text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800";
+            case "SHORTLISTED": return "text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800";
+            default: return "text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800"; // PENDING
         }
     };
 
-    if (loading) return <div className="p-8 text-center text-gray-500">Loading applications...</div>;
-
+    if (loading) return <div className="p-8 text-center text-gray-500 dark:text-gray-400">Loading applications...</div>;
     return (
-        <div className="min-h-screen bg-gray-50 py-12">
+        <div className="min-h-screen bg-gray-50 dark:bg-black py-12 transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h1 className="text-3xl font-bold text-gray-900 mb-8">My Applications</h1>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">My Applications</h1>
 
                 {applications.length > 0 ? (
-                    <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                        <div className="divide-y divide-gray-100">
+                    <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden transition-colors duration-300">
+                        <div className="divide-y divide-gray-100 dark:divide-gray-800">
                             {applications.map((app) => (
-                                <div key={app._id} className="p-6 hover:bg-gray-50 transition-colors">
+                                <div key={app._id} className="p-6 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                                     <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
                                         <div>
-                                            <h3 className="text-xl font-bold text-gray-900 mb-1">
+                                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
                                                 {app.jobId?.title || "Job Unavailable"}
                                             </h3>
-                                            <div className="flex items-center text-gray-500 text-sm mb-2">
+                                            <div className="flex items-center text-gray-500 dark:text-gray-400 text-sm mb-2">
                                                 <Building2 className="h-4 w-4 mr-1.5" />
                                                 {app.jobId?.companyName || "Unknown Company"}
                                             </div>
-                                            <div className="flex items-center text-xs text-gray-400">
+                                            <div className="flex items-center text-xs text-gray-400 dark:text-gray-500">
                                                 <Clock className="h-3 w-3 mr-1" />
                                                 Applied on {new Date(app.appliedAt).toLocaleDateString()}
                                             </div>
@@ -85,12 +84,12 @@ export default function CandidateDashboard() {
                         </div>
                     </div>
                 ) : (
-                    <div className="text-center py-20 bg-white rounded-xl shadow-sm">
-                        <div className="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="text-center py-20 bg-white dark:bg-gray-900 rounded-xl shadow-sm transition-colors duration-300 border border-gray-100 dark:border-gray-800">
+                        <div className="bg-blue-50 dark:bg-blue-900/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                             <FileText className="h-8 w-8 text-blue-500" />
                         </div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-2">No Applications Yet</h3>
-                        <p className="text-gray-500 mb-6">Start exploring jobs and apply to your dream roles.</p>
+                        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">No Applications Yet</h3>
+                        <p className="text-gray-500 dark:text-gray-400 mb-6">Start exploring jobs and apply to your dream roles.</p>
                         <Link href="/jobs" className="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-blue-700 transition-colors">
                             Find Jobs
                         </Link>

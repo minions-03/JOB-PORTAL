@@ -26,20 +26,20 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 to-white pt-24 pb-32 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 pt-24 pb-32 overflow-hidden transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             {/* Left Content */}
             <div className="flex-1 text-center lg:text-left z-10">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-6 leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-6 leading-tight">
                 Find Your <br />
-                <span className="text-blue-600">Dream Job</span> Today
+                <span className="text-blue-600 dark:text-blue-400">Dream Job</span> Today
               </h1>
-              <p className="text-lg sm:text-xl text-gray-600 mb-10 max-w-2xl mx-auto lg:mx-0">
+              <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto lg:mx-0">
                 Connecting thousands of job seekers with top employers. Browse jobs, apply effortlessly, and track your career progress.
               </p>
 
-              <div className="bg-white rounded-xl shadow-xl p-3 flex flex-col sm:flex-row gap-3 border border-gray-100 max-w-2xl mx-auto lg:mx-0">
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-3 flex flex-col sm:flex-row gap-3 border border-gray-100 dark:border-gray-700 max-w-2xl mx-auto lg:mx-0 transition-colors">
                 <div className="relative flex-grow">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <Search className="h-5 w-5 text-gray-400" />
@@ -47,20 +47,20 @@ export default function Home() {
                   <input
                     type="text"
                     placeholder="Job title, keywords..."
-                    className="block w-full pl-10 pr-3 py-3 border border-gray-100 rounded-lg focus:ring-2 focus:ring-blue-500 text-black placeholder-gray-500 focus:outline-none"
+                    className="block w-full pl-10 pr-3 py-3 border border-gray-100 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-black dark:text-white dark:bg-gray-700 placeholder-gray-500 focus:outline-none transition-colors"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onKeyDown={handleKeyDown}
                   />
                 </div>
-                <div className="relative flex-grow sm:border-l border-gray-200">
+                <div className="relative flex-grow sm:border-l border-gray-200 dark:border-gray-600">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <MapPin className="h-5 w-5 text-gray-400" />
                   </div>
                   <input
                     type="text"
                     placeholder="Location"
-                    className="block w-full pl-10 pr-3 py-3 border border-gray-100 rounded-lg focus:ring-2 focus:ring-blue-500 text-black placeholder-gray-500 focus:outline-none"
+                    className="block w-full pl-10 pr-3 py-3 border border-gray-100 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-black dark:text-white dark:bg-gray-700 placeholder-gray-500 focus:outline-none transition-colors"
                     value={locationTerm}
                     onChange={(e) => setLocationTerm(e.target.value)}
                     onKeyDown={handleKeyDown}
@@ -97,11 +97,11 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Us?</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Why Choose Us?</h2>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               We provide the best tools for both candidates and recruiters to ensure a smooth hiring process.
             </p>
           </div>
@@ -112,12 +112,12 @@ export default function Home() {
               { title: "Real-time Tracking", desc: "Get instant updates on your application status from recruiters." },
               { title: "Verified Recruiters", desc: "Connect with legitimate employers from top companies." }
             ].map((feature, i) => (
-              <div key={i} className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6 text-blue-600 font-bold text-xl">
+              <div key={i} className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100 dark:border-gray-700">
+                <div className="h-12 w-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-6 text-blue-600 dark:text-blue-400 font-bold text-xl">
                   {i + 1}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{feature.title}</h3>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{feature.desc}</p>
               </div>
             ))}
           </div>
@@ -125,7 +125,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-white py-20 border-t border-gray-100">
+      <section className="bg-white dark:bg-gray-900 py-20 border-t border-gray-100 dark:border-gray-800 transition-colors duration-300">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-blue-600 rounded-3xl p-12 relative overflow-hidden">
           <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-blue-500 rounded-full opacity-50 blur-2xl"></div>
           <div className="relative z-10">

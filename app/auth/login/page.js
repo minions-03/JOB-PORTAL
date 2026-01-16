@@ -38,17 +38,17 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
-            <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-xl">
+        <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-black transition-colors duration-300">
+            <div className="max-w-md w-full space-y-8 bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-xl border border-transparent dark:border-gray-800 transition-colors duration-300">
                 <div>
-                    <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                    <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
                         Welcome back
                     </h2>
-                    <p className="mt-2 text-center text-sm text-gray-600">
+                    <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
                         Or{" "}
                         <Link
                             href="/auth/register"
-                            className="font-medium text-blue-600 hover:text-blue-500"
+                            className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500"
                         >
                             create a new account
                         </Link>
@@ -56,8 +56,8 @@ export default function LoginPage() {
                 </div>
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                     {error && (
-                        <div className="bg-red-50 border-l-4 border-red-500 p-4">
-                            <p className="text-red-700 text-sm">{error}</p>
+                        <div className="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-4">
+                            <p className="text-red-700 dark:text-red-400 text-sm">{error}</p>
                         </div>
                     )}
                     <div className="rounded-md shadow-sm space-y-4">
@@ -71,7 +71,7 @@ export default function LoginPage() {
                                 type="email"
                                 autoComplete="email"
                                 required
-                                className="appearance-none rounded-lg relative block w-full pl-10 px-3 py-3 border border-gray-300 placeholder-gray-600 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                                className="appearance-none rounded-lg relative block w-full pl-10 px-3 py-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 placeholder-gray-600 dark:placeholder-gray-400 text-gray-900 dark:text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition-colors"
                                 placeholder="Email address"
                                 value={data.email}
                                 onChange={(e) => setData({ ...data, email: e.target.value })}
@@ -87,7 +87,7 @@ export default function LoginPage() {
                                 type="password"
                                 autoComplete="current-password"
                                 required
-                                className="appearance-none rounded-lg relative block w-full pl-10 px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                                className="appearance-none rounded-lg relative block w-full pl-10 px-3 py-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm transition-colors"
                                 placeholder="Password"
                                 value={data.password}
                                 onChange={(e) => setData({ ...data, password: e.target.value })}
