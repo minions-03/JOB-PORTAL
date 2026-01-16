@@ -27,7 +27,7 @@ export default function Home() {
               <input
                 type="text"
                 placeholder="Job title, keywords..."
-                className="block w-full pl-10 pr-3 py-3 border-none rounded-md focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder-gray-600"
+                className="block w-full pl-10 pr-3 py-3 border-none rounded-md focus:ring-2 focus:ring-blue-500 text-black placeholder-gray-700"
               />
             </div>
             <div className="relative flex-grow border-l border-gray-200">
@@ -37,7 +37,7 @@ export default function Home() {
               <input
                 type="text"
                 placeholder="Location"
-                className="block w-full pl-10 pr-3 py-3 border-none rounded-md focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder-gray-600"
+                className="block w-full pl-10 pr-3 py-3 border-none rounded-md focus:ring-2 focus:ring-blue-500 text-black placeholder-gray-700"
               />
             </div>
             <button className="bg-blue-600 text-white font-bold py-3 px-8 rounded-md hover:bg-blue-700 transition-colors shadow-lg">

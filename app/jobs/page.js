@@ -51,7 +51,7 @@ function JobsPageContent() {
                             <input
                                 type="text"
                                 placeholder="Search jobs by title, company, or keywords..."
-                                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-600"
+                                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-black placeholder-gray-700"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
@@ -61,7 +61,7 @@ function JobsPageContent() {
                             <input
                                 type="text"
                                 placeholder="Location"
-                                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-black placeholder-gray-700"
                                 value={locationTerm}
                                 onChange={(e) => setLocationTerm(e.target.value)}
                             />
