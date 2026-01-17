@@ -126,18 +126,21 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="bg-white dark:bg-gray-900 py-20 border-t border-gray-100 dark:border-gray-800 transition-colors duration-300">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-blue-600 rounded-3xl p-12 relative overflow-hidden">
-          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-blue-500 rounded-full opacity-50 blur-2xl"></div>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 rounded-3xl p-12 relative overflow-hidden shadow-2xl">
+          {/* Decorative Elements */}
+          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-72 h-72 bg-white rounded-full opacity-10 blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-72 h-72 bg-indigo-500 rounded-full opacity-20 blur-3xl"></div>
+
           <div className="relative z-10">
-            <h2 className="text-3xl font-bold text-white mb-6">Ready to start your career journey?</h2>
-            <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to start your career journey?</h2>
+            <p className="text-blue-100 mb-10 max-w-2xl mx-auto text-lg">
               Create your profile today and get discovered by top recruiters. It takes less than 5 minutes.
             </p>
-            <div className="flex justify-center gap-4">
-              <Link href="/auth/register" className="bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-all shadow-lg">
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link href="/auth/register" className="bg-white text-blue-700 px-8 py-4 rounded-full font-bold hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
                 Get Started
               </Link>
-              <Link href="/jobs" className="bg-blue-700 text-white px-8 py-3 rounded-full font-bold hover:bg-blue-800 transition-all shadow-lg border border-blue-500">
+              <Link href="/jobs" className="bg-transparent text-white border-2 border-white/30 px-8 py-4 rounded-full font-bold hover:bg-white/10 transition-all backdrop-blur-sm">
                 Browse Jobs
               </Link>
             </div>
